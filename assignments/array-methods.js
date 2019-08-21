@@ -57,6 +57,7 @@ const runners = [
 
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs. Combine both the first and last names and populate a new array called `fullNames`. This array will contain just strings.
+console.log("----------------------array-methods.js challenge 1------------------------");
 let fullNames = [];
 
 runners.forEach(function(runner) {
@@ -67,6 +68,7 @@ console.log(fullNames);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runners' first names in uppercase because the director BECAME DRUNK WITH POWER. Populate an array called `firstNamesAllCaps`. This array will contain just strings.
+console.log("----------------------array-methods.js challenge 2------------------------");
 let firstNamesAllCaps = [];
 
 runners.forEach(function(runner) {
@@ -77,6 +79,7 @@ console.log(firstNamesAllCaps);
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue. We need a filtered version of the runners array, containing only those runners with large sized shirts so they can choose a different size. This will be an array of objects.
+console.log("----------------------array-methods.js challenge 3------------------------");
 let runnersLargeSizeShirt = [];
 
 runnersLargeSizeShirt = runners.filter(function(runner) {
@@ -89,6 +92,7 @@ console.log(runnersLargeSizeShirt);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations and save the total into a ticketPriceTotal variable.
+console.log("----------------------array-methods.js challenge 4------------------------");
 let ticketPriceTotal = 0;
 
 ticketPriceTotal = runners.reduce(function(accu, curEle) {
@@ -102,22 +106,25 @@ console.log(ticketPriceTotal);
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-console.log("----------------------array-methods.js challenge 5------------------------");
-
 // Problem 1
 //Print every runner object with a first name that starts with a "m"
+console.log("----------------------array-methods.js challenge 5 problem 1------------------------");
+
 console.log(runners.filter(function(runner) {
   return runner.first_name[0] === "M";
 }));
 
 // Problem 2
 //Print the average of all runner donations
+console.log("----------------------array-methods.js challenge 5 problem 2------------------------");
+
 console.log(runners.reduce(function(accu, runner) {
   return accu + runner.donation;
 }, 0) / runners.length);
 
 //Problem 3
 //Caeser shuffle: shift the characters of the runner's names n places to the right alphabetically
+console.log("----------------------array-methods.js challenge 5 problem 3------------------------");
 
 function isUpperCase(letter) {
   return letter === letter.toUpperCase();
@@ -143,14 +150,17 @@ function shiftLetter(letter, n) {
 
 console.log(runners.map(function(runner) {
   var n = Math.ceil(Math.random() * 26) * (Math.random() < 0.5 ? 1 : -1);
+  var runnerCopy = {};
 
-  runner.first_name = n + ": " + runner.first_name.split("").map(function(letter) {
+  Object.assign(runnerCopy, runner);
+
+  runnerCopy.first_name = n + ": " + runnerCopy.first_name.split("").map(function(letter) {
     return shiftLetter(letter, n)
   }).join("");
   
-  runner.last_name = runner.last_name.split("").map(function(letter) {
+  runnerCopy.last_name = runnerCopy.last_name.split("").map(function(letter) {
     return shiftLetter(letter, n)
   }).join("");
 
-  return runner;
+  return runnerCopy;
 }));
