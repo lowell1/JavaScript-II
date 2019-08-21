@@ -4,9 +4,11 @@
 // that manipulates variables defined in the outer scope.
 // The outer scope can be a parent function, or the top level of the script.
 
+console.log("----------------------clojure.js challenge 1------------------------");
+
 const countDown = function() {
   var num = 10;
-
+  
   return function() {
     num--;
     return num;
@@ -22,24 +24,26 @@ for(let i = 0; i < 10; i++) {
 
 
 // ==== Challenge 2: Implement a "counter maker" function ====
-const counterMaker = () => {
-  // IMPLEMENTATION OF counterMaker:
-  // 1- Declare a `count` variable with a value of 0. We will be mutating it, so declare it using `let`!
-  // 2- Declare a function `counter`. It should increment and return `count`.
-  //      NOTE: This `counter` function, being nested inside `counterMaker`,
-  //      "closes over" the `count` variable. It can "see" it in the parent scope!
-  // 3- Return the `counter` function.
-  let count = 0;
+// IMPLEMENTATION OF counterMaker:
+// 1- Declare a `count` variable with a value of 0. We will be mutating it, so declare it using `let`!
+// 2- Declare a function `counter`. It should increment and return `count`.
+//      NOTE: This `counter` function, being nested inside `counterMaker`,
+//      "closes over" the `count` variable. It can "see" it in the parent scope!
+// 3- Return the `counter` function.
 
+console.log("----------------------clojure.js challenge 2------------------------");
+
+const counterMaker = () => {
+  let count = 0;
+  
   function counter() {
     count++;
     return count;
   }
-
+  
   return counter;
 };
 /* Example usage: */const myCounter = counterMaker();
-console.log("-------------------counterMaker------------------");
 console.log(myCounter()); // 1
 console.log(myCounter()); // 2
 
@@ -50,16 +54,16 @@ console.log(myCounter()); // 2
 console.log("-------------------Closure.js Challenge 3------------------");
 const newCounterMaker = (limit) => {
   let count = 0;
-
+  
   function counter() {
     if(count < limit)
-      count++;
+    count++;
     else
-      count = 1;
-
+    count = 1;
+    
     return count;
   }
-
+  
   return counter;
 };
 
@@ -72,10 +76,13 @@ console.log(myNewCounter());
 
 
 // ==== Challenge 4: Create a counter function with an object that can increment and decrement ====
+// Return an object that has two methods called `increment` and `decrement`.
+// `increment` should increment a counter variable in closure scope and return it.
+// `decrement` should decrement the counter variable and return it.
+
+console.log("----------------------clojure.js challenge 4------------------------");
+
 const counterFactory = () => {
-  // Return an object that has two methods called `increment` and `decrement`.
-  // `increment` should increment a counter variable in closure scope and return it.
-  // `decrement` should decrement the counter variable and return it.
   var count = 0;
   
   var factory = {
@@ -91,7 +98,6 @@ const counterFactory = () => {
 
   return factory;
 };
-console.log("-------------------counterFactory------------------");
 var factory = counterFactory();
 console.log(factory.decrement());
 console.log(factory.decrement());

@@ -96,7 +96,6 @@ console.log("----------------------array-methods.js challenge 4-----------------
 let ticketPriceTotal = 0;
 
 ticketPriceTotal = runners.reduce(function(accu, curEle) {
-  console.log(`${accu} + ${curEle.donation} = ${accu + curEle.donation}`);
   return accu + curEle.donation;
 }, 0);
 

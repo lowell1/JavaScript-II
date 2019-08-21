@@ -38,6 +38,7 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
   console.log(test2); // "this Pencil is worth a million dollars!"
 */
 
+console.log("----------------------callback.js challenge 1------------------------");
 
 function getLength(arr, cb) {
   // getLength passes the length of the array into the callback.
@@ -48,6 +49,8 @@ console.log(getLength(items, function(len) {
   return(`The length of items is ${len}`);
 }));
 
+console.log("----------------------callback.js challenge 2------------------------");
+
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
   return cb(arr[arr.length - 1]);
@@ -56,6 +59,8 @@ function last(arr, cb) {
 console.log(last(items, function(lastItem) {
   return(`The last item is ${lastItem}`);
 }));
+
+console.log("----------------------callback.js challenge 3------------------------");
 
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
@@ -66,6 +71,8 @@ console.log(sumNums(2, 2, function(sum) {
   return(`The sum is ${sum}`);
 }));
 
+console.log("----------------------callback.js challenge 4------------------------");
+
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
   return cb(x * y);
@@ -74,6 +81,8 @@ function multiplyNums(x, y, cb) {
 console.log(multiplyNums(4, 10, function(product) {
   return(`The product is ${product}`);
 }));
+
+console.log("----------------------callback.js challenge 5------------------------");
 
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
@@ -89,17 +98,19 @@ console.log(contains("Gum", items, cb));
 console.log(contains("Potato", items, cb));
 
 // console.log(contains("Gum", items, function(isContained) {
-//   return isContained ? "True" : "False";
-// }));
+  //   return isContained ? "True" : "False";
+  // }));
+  
+  // console.log(contains("Potato", items, function(isContained) {
+    //   return isContained ? "True" : "False";
+    // }));
+    
+    /* STRETCH PROBLEM */
+    
+    console.log("----------------------callback.js challenge 6------------------------");
 
-// console.log(contains("Potato", items, function(isContained) {
-//   return isContained ? "True" : "False";
-// }));
-
-/* STRETCH PROBLEM */
-
-function removeDuplicates(array, cb) {
-  // removeDuplicates removes all duplicate values from the given array.
+    function removeDuplicates(array, cb) {
+      // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
   var result = [];
