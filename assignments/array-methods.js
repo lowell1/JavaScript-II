@@ -98,8 +98,11 @@ ticketPriceTotal = runners.reduce(function(accu, curEle) {
 
 console.log(ticketPriceTotal);
 
+
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
+
+console.log("----------------------array-methods.js challenge 5------------------------");
 
 // Problem 1
 //Print every runner object with a first name that starts with a "m"
@@ -113,16 +116,41 @@ console.log(runners.reduce(function(accu, runner) {
   return accu + runner.donation;
 }, 0) / runners.length);
 
-// Problem 3
-//Print runners array but modify the firstname property such that all "A"s or "a"s become "L:" and "S"s or "s"s become ":S"
-console.log(runners.map(function(runner) {
-  runner.first_name = runner.first_name.split("").map(function(char) {
-    if(char.toLowerCase() === "a") 
-      return "L:";
-    else if(char.toLowerCase() === "s")
-      return ":S";
+//Problem 3
+//Caeser shuffle: shift the characters of the runner's names n places to the right alphabetically
+
+function isUpperCase(letter) {
+  return letter === letter.toUpperCase();
+}
+
+function shiftLetter(letter, n) {
+  if(!letter.match(/[a-z|A-Z]/g))
+    return letter;
+
+  n %= 26;
+
+  var newPlace = letter.charCodeAt(0) + n;
+  var max = isUpperCase(letter) ? 90 : 122; // Z, z
+  var min = isUpperCase(letter) ? 65 : 97; // A, a
+
+    if(newPlace > max) // 122 = "z"
+      return String.fromCharCode(newPlace - max + min - 1); // newPlace - 122 + 97 - 1
+    else if(newPlace < min)
+      return String.fromCharCode(max - (min - newPlace) + 1);
     else
-      return char;
+      return String.fromCharCode(newPlace);
+}
+
+console.log(runners.map(function(runner) {
+  var n = Math.ceil(Math.random() * 26) * (Math.random() < 0.5 ? 1 : -1);
+
+  runner.first_name = n + ": " + runner.first_name.split("").map(function(letter) {
+    return shiftLetter(letter, n)
   }).join("");
+  
+  runner.last_name = runner.last_name.split("").map(function(letter) {
+    return shiftLetter(letter, n)
+  }).join("");
+
   return runner;
 }));
